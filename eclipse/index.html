@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Compliment Website with Stars</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      background-color: lightblue;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      position: relative;
+      overflow: hidden; /* so stars don’t scroll outside */
+    }
+
+    h1 {
+      position: relative;
+      z-index: 2; /* keep above stars */
+      margin-bottom: 30px;
+    }
+
+    .button-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* ✅ fixed 'colums' → 'columns' */
+      gap: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2; /* keep above stars */
+    }
+
+    button {
+      font-size: 18px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* Sparkling stars */
+    .star {
+      position: absolute;
+      font-size: 24px;
+      animation: twinkle 2s infinite alternate;
+      opacity: 0.7;
+      z-index: 1; /* stay behind buttons and text */
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(0.8) rotate(0deg); }
+      to   { opacity: 1; transform: scale(1.5) rotate(45deg); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Willkommen! Benny!!</h1>
+
+  <!-- ✅ Buttons now wrapped inside container -->
+  <div class="button-container">
+    <button onclick="go1()">Amsterdam</button>
+    <button onclick="go2()">Stanford</button>
+    <button onclick="go3()">Hamburg</button>
+    <button onclick="go4()">Koeln</button>
+    <button onclick="go5()">NYU</button>
+    <button onclick="go6()">UMIC</button>
+    <button onclick="go7()">Wash</button>
+    <button onclick="go8()">Toronto</button>
+    <button onclick="go9()">UBC</button>
+    <button onclick="go10()">Waterloo</button>
+  </div>
+
+  <!-- Stars container -->
+  <div id="stars"></div>
+
+  <script>
+    function go1() {
+      window.location.href = "https://www.uva.nl/over-de-uva/samenwerken-met-de-uva/samenwerken-met-de-uva.html";
+    }
+    function go2() {
+      window.location.href = "https://news.stanford.edu/stories/2025/04/Stanford-initiative-seeks-to-bring-more-languages-online";
+    }
+    function go3(){
+      window.location.href = "https://www.uni-hamburg.de";
+    }
+    function go4(){
+      window.location.href = "https://uni-koeln.de/google-suche";
+    }
+    function go5(){
+      window.location.href = "https://tisch.nyu.edu/special-programs/ma-in-producing";
+    }
+    function go6(){
+      window.location.href = "https://umich.edu";
+    }
+    function go7(){
+      window.location.href = "https://www.washington.edu";
+    }
+    function go8(){
+      window.location.href = "https://www.utoronto.ca";
+    }
+    function go9(){
+      window.location.href = "https://www.ubc.ca";
+    }
+    function go10(){
+      window.location.href = "https://uwaterloo.ca";
+    }
+
+    // Generate colorful stars
+    const colors = [
+      "red", "orange", "yellow", "green", "blue", "indigo", "violet",
+      "pink", "cyan", "lime", "magenta", "gold", "silver", "teal",
+      "coral", "salmon", "turquoise", "purple", "brown", "navy",
+      "crimson", "orchid", "chocolate", "aqua","maroon","white","black",
+      "rose","aqua","darkorchid","dimgray","gold","hotpink","ivory",
+      "lavender","lightcyan","lightseagreen","lime","skyblue"
+    ];
+
+    const starContainer = document.getElementById("stars");
+
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement("i");
+      star.classList.add("fa-solid", "fa-star", "star");
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.color = colors[Math.floor(Math.random() * colors.length)];
+      star.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+      star.style.fontSize = (15 + Math.random() * 30) + "px";
+      starContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
